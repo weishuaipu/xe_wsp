@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Bootstrap 轮播图</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #demo{
+            width: 500px;
+        }
+        #demo img{
+            width: 500px;
+        }
+    </style>
+  </head>
+  <body>
+      <!-- 1.1Bootstrap 使用需要使用一个叫.carousel 类来初始化
+        轮播容器，并使用.slide 来进行滑动
+        触发轮播事件为 data-ride 的data-属性为 carousel
+        注意 容器此时需要一个id选择器 因为翻页滚动 需要进行绑定到那个 容器上
+    -->
+        <!-- <div id="demo" class="carousel slide" data-ride="carousel"data-interval='2000'data-pause='hover'data-wrap='true'> -->
+            <div id="demo" class="carousel slide">
+                <!-- 指示符 -->
+                <!-- 设置分页功能
+                    需要使用.carousel-indicators 分页容器
+                -->
+                <ul class="carousel-indicators">
+                  <li data-target="#demo" data-slide-to="0" class="active"></li>
+                  <li data-target="#demo" data-slide-to="1"></li>
+                  <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+               
+                <!-- 轮播图片 -->
+                <!-- 设置轮播容器 .carousel-inner
+                    轮播容器的每一项是.carousel-item
+                    选中为.active
+                -->
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                    <div class="carousel-caption">
+                            <h3>第一张图片描述标题</h3>
+                            <p>这是图片的描述!</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://static.runoob.com/images/mix/img_nature_wide.jpg">
+                    <div class="carousel-caption">
+                            <h3>第二张图片描述标题</h3>
+                            <p>这是图片的描述!</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
+                    <div class="carousel-caption">
+                            <h3>第三张图片描述标题</h3>
+                            <p>这是图片的描述!</p>
+                    </div>
+                  </div>
+                </div>
+               
+                <!-- 左右切换按钮 -->
+                <a class="left carousel-control-prev" href="#demo" data-slide="prev">
+                  <span class="right carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                </a>
+               
+              </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+  <script>
+      $('.carousel').carousel({
+          interval:2000,
+      });
+    //   $('.carousel').carousel('cycle')
+    $('#identifier').on('slide.bs.carousel', function () {
+    // 执行一些动作...
+    console.log('silde strat.......')
+    });
+    $('#identifier').on('slid.bs.carousel', function () {
+    // 执行一些动作...
+    console.log('sild ')
+    });
+    $('.carousel-item').each(function(e){
+        $(this).on('click',function(){
+            //获取index
+            console.log($(this).html());
+            console.log($(this).index());
+        });
+    });
+    $('.carousel-indicators >li').each(function(a){
+        $(this).on('click',function(){
+            console.log($(this).index());
+        })
+    })
+    //事件流，事件冒泡，事件捕捉
+    //事件流：描述的是页面元素接收事件的顺序；
+    //事件冒泡:事件开始的时候 是由具体的元素接收 然后逐级向上传播到较为不具体的节点，
+    //事件捕捉:事件开始的时候是由最不具体的元素接收 然后逐级向下传递到 最具体的节点
+    $('.left').on('click',function(){
+        console.log('left');
+        var active = $('.carousel-indicators .active').index();
+        console.log(active);
+    })
+  </script>
+</html>
